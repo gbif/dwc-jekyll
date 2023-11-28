@@ -1,0 +1,12 @@
+- text: Home
+  href: /nl/
+- text: Termen
+  menu:
+  - text: Vestigingsstatus
+    href: /nl/em/
+- text: Taal
+  menu:
+  - text: Engels
+    href: /
+  - text: Nederlands
+    href: /nl/
