@@ -1,0 +1,78 @@
+---
+layout: default
+---
+
+{{ content }}
+
+<!-- i18n -->
+{% assign language = 'en' %}
+{% if page.language %}
+  {% assign language = page.language %}
+{% endif %}
+{% assign dictionary_file = 'dictionary_' | append: language %}
+{% assign dictionary = site.data[dictionary_file] %}
+
+<!-- vocabulary terms -->
+{% assign namespace = page.vocabulary.namespace %}
+{% assign vocabulary_file = page.vocabulary.name %}
+{% assign terms = site.data.vocabularies[vocabulary_file] %}
+
+<h2 id="3-term-index">3 {{ dictionary.term_index }}</h2>
+
+{% for term in terms %}
+<a href="#{{ namespace }}_{{ term.term_localName }}">{{ term.label }}</a>{% if forloop.last == false %} | {% endif %}
+{% endfor %}
+
+<h2 id="4-vocabulary">4 {{ dictionary.vocabulary }}</h2>
+
+{% for term in terms %}
+<table class="table">
+  <thead>
+    <tr>
+      <th colspan="2"><a id="{{ namespace }}_{{ term.term_localName }}"></a>Term Name {{ namespace }}:{{ term.term_localName }}</th>
+		</tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ dictionary.term_iri }}</td>
+      <td><a href="http://rs.tdwg.org/{{ namespace }}/values/{{ term.term_localName}}">http://rs.tdwg.org/{{ namespace }}/values/{{ term.term_localName}}</a></td>
+    </tr>
+    <tr>
+      <td>{{ dictionary.modified }}</td>
+      <td>{{ term.term_modified }}</td>
+    </tr>
+    <tr>
+      <td>{{ dictionary.term_version_iri }}</td>
+      <td><a href="http://rs.tdwg.org/{{ namespace }}/values/version/{{ term.term_localName}}-{{ term.term_modified }}">http://rs.tdwg.org/{{ namespace }}/values/version/{{ term.term_localName}}-{{ term.term_modified }}</a></td>
+    </tr>
+    <tr>
+      <td>{{ dictionary.label }}</td>
+      <td>{{ term.label }}</td>
+    </tr>
+    <tr>
+      <td>{{ dictionary.definition }}</td>
+      <td>{{ term.definition | markdownify }}</td>
+    </tr>
+    {% if term.notes %}
+    <tr>
+      <td>{{ dictionary.notes }}</td>
+      <td>{{ term.notes }}</td>
+    </tr>
+    {% endif %}
+    {% if term.controlled_value_string %}
+    <tr>
+      <td>{{ dictionary.controlled_value }}</td>
+      <td>{{ term.controlled_value_string }}</td>
+    </tr>
+    {% endif %}
+    <tr>
+      <td>{{ dictionary.type }}</td>
+      <td>{{ term.type }}</td>
+    </tr>
+    <tr>
+      <td>{{ dictionary.executive_committee_decision }}</td>
+      <td><a href="#">TODO</a></td>
+    </tr>
+  </tbody>
+</table>
+{% endfor %}

@@ -1,0 +1,13 @@
+{
+  "term_index": "Term index",
+  "vocabulary": "Vocabulary",
+  "term_iri": "Term IRI",
+  "modified": "Modified",
+  "term_version_iri": "Term version IRI",
+  "label": "Label",
+  "definition": "Definition",
+  "notes": "Notes",
+  "controlled_value": "Controlled value",
+  "type": "Type",
+  "executive_committee_decision": "Executive Committee decision"
+}
