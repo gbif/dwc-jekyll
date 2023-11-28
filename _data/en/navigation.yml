@@ -1,0 +1,12 @@
+- text: Home
+  href: /
+- text: Terms
+  menu:
+  - text: Establishment Means
+    href: /em/
+- text: Language
+  menu:
+  - text: English
+    href: /
+  - text: Dutch
+    href: /nl/
