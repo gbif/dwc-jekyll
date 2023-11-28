@@ -1,6 +1,5 @@
 ---
 layout: home
-permalink: /
 ---
 
 # Darwin Core
