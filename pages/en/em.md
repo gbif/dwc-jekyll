@@ -1,5 +1,9 @@
 ---
-permalink: em
+permalink: /em/
+layout: vocabulary
+vocabulary:
+  name: establishmentMeans
+  namespace: dwcem
 ---
 
 # Establishment Means Controlled Vocabulary List of Terms
