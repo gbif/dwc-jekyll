@@ -1,5 +1,6 @@
 ---
 layout: home
+permalink: /nl/
 ---
 
 # Darwin Core (Dutch)
