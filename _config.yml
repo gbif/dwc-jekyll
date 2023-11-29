@@ -34,9 +34,11 @@ defaults:
     values:
       language: en
       permalink: /:basename/
+      navigation: navigation_en
   - scope:
       path: pages/nl
     values:
       language: nl
       permalink: /nl/:basename/
+      navigation: navigation_nl
 
