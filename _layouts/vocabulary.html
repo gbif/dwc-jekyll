@@ -26,32 +26,42 @@ layout: default
 <h2 id="4-vocabulary">4 {{ dictionary.vocabulary }}</h2>
 
 {% for term in terms %}
+{% assign term_iri = term.term_isDefinedBy | append: term.term_localName %}
+{% assign term_version_iri = term.term_isDefinedBy | append: 'version/' | append: term.term_localName | append: '-' | append: term.term_modified %}
+{% assign term_label_header = 'label_' | append: language %}
+{% assign term_label = term[term_label_header] %}
+{% assign term_definition_header = 'definition_' | append: language %}
+{% assign term_definition = term[term_definition_header] %}
+{% if term.decision_localName %}
+  {% assign term_decision = 'http://rs.tdwg.org/decisions/' | append: term.decision_localName %}
+{% endif %}
+
 <table class="table">
   <thead>
     <tr>
-      <th colspan="2"><a id="{{ namespace }}_{{ term.term_localName }}"></a>Term Name {{ namespace }}:{{ term.term_localName }}</th>
+      <th colspan="2"><a id="{{ namespace }}_{{ term.term_localName }}"></a>{{ dictionary.term_name }} {{ namespace }}:{{ term.term_localName }}</th>
 		</tr>
   </thead>
   <tbody>
     <tr>
       <td>{{ dictionary.term_iri }}</td>
-      <td><a href="http://rs.tdwg.org/{{ namespace }}/values/{{ term.term_localName}}">http://rs.tdwg.org/{{ namespace }}/values/{{ term.term_localName}}</a></td>
+      <td><a href="{{ term_iri }}">{{ term_iri }}</a></td>
     </tr>
     <tr>
       <td>{{ dictionary.modified }}</td>
-      <td>{{ term.term_modified }}</td>
+      <td>{{ term.modified }}</td>
     </tr>
     <tr>
       <td>{{ dictionary.term_version_iri }}</td>
-      <td><a href="http://rs.tdwg.org/{{ namespace }}/values/version/{{ term.term_localName}}-{{ term.term_modified }}">http://rs.tdwg.org/{{ namespace }}/values/version/{{ term.term_localName}}-{{ term.term_modified }}</a></td>
+      <td><a href="{{ term_version_iri }}">{{ term_version_iri }}</a></td>
     </tr>
     <tr>
       <td>{{ dictionary.label }}</td>
-      <td>{{ term.label }}</td>
+      <td>{{ term_label }}</td>
     </tr>
     <tr>
       <td>{{ dictionary.definition }}</td>
-      <td>{{ term.definition | markdownify }}</td>
+      <td>{{ term_definition | markdownify }}</td>
     </tr>
     {% if term.notes %}
     <tr>
@@ -69,10 +79,12 @@ layout: default
       <td>{{ dictionary.type }}</td>
       <td>{{ term.type }}</td>
     </tr>
+    {% if term_decision %}
     <tr>
       <td>{{ dictionary.executive_committee_decision }}</td>
-      <td><a href="#">TODO</a></td>
+      <td><a href="{{ term_decision }}">{{ term_decision }}</a></td>
     </tr>
+    {% endif %}
   </tbody>
 </table>
 {% endfor %}

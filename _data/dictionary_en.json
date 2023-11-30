@@ -1,6 +1,7 @@
 {
   "term_index": "Term index",
   "vocabulary": "Vocabulary",
+  "term_name": "Term name",
   "term_iri": "Term IRI",
   "modified": "Modified",
   "term_version_iri": "Term version IRI",
